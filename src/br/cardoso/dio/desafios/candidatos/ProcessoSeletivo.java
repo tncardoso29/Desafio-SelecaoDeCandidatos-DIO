@@ -1,5 +1,6 @@
 package br.cardoso.dio.desafios.candidatos;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProcessoSeletivo {
@@ -10,8 +11,41 @@ public class ProcessoSeletivo {
 		System.out.println("..........: SISTEMA DE PROCESSOS SELETIVOS | v 1.0 :..........");
 		System.out.println(); // Quebrando as linhas...
 		
-		imprimirSelecionados();
+		String[] candidatos = {"MARQUINHOS", "BETTY", "MIKE", "FRANK"}; // Lista String de nome de candidatos;
 		
+		// dsdsadsad
+		for(String candidato: candidatos) {
+			entrandoEmContato(candidato);
+		}
+		
+	}
+	
+	// Método de contactar os candidatos;
+	static void entrandoEmContato(String candidato) {
+		int numeroDeTentativas = 1;
+		boolean continuarTentando = true;
+		boolean atendeu = false;
+		
+		do {
+			atendeu= atender();
+			continuarTentando = !atendeu;
+			if(continuarTentando)
+				numeroDeTentativas++;
+			else
+				System.out.println("CONTATO REALIZADO COM EXITO!!");
+			
+		}while(continuarTentando && numeroDeTentativas < 3);
+		
+		if(atendeu)
+			System.out.println("CONSEGUIMOS CONTATO COM " + candidato + " NA " + numeroDeTentativas + " TENTATIVA");
+		else
+			System.out.println(); // Quebrando as linhas...
+			System.out.println("NÃO CONSEGUIMOS CONTATO COM " + candidato + ", NÚMERO MÁXIMO DE TENTATIVAS: " + numeroDeTentativas + " REALIZADAS.");
+	}
+	
+	// Método de atender telefonemas;
+	static boolean atender() {
+		return new Random().nextInt(3)==1;
 	}
 	
 	// Método para analise e seleção dos candidados;
